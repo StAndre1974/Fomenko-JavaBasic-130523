@@ -17,7 +17,13 @@ public class ShuttlesHw7 {
             ++currentShuttleNumber;
         }
 
+        System.out.println("LIST OF SHUTTLES:");
+        for (int shuttleNumber : shuttles) {
+            System.out.printf("Shuttle number %03d\n", shuttleNumber);
+        }
+        System.out.printf("TOTAL SHUTTLES: %d", shuttles.length);
     }
+
 
     private static boolean isNotValid(int[] prohibitedNumbers, int numberToCheck) {
         String numberToCheckString = Integer.toString(numberToCheck);
