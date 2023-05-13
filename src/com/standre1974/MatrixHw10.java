@@ -24,6 +24,11 @@ public class MatrixHw10 {
             System.exit(0);
         }
 
+        int[][] initialMatrixAxB = new int[matrixSideA][matrixSideB];
+        int[][] matrixBxAx90 = new int[matrixSideB][matrixSideA];
+
+
+
     }
 
     //METHODS
