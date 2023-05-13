@@ -20,4 +20,8 @@ public class MatrixHw10 {
             scanner.nextLine();
         }
     }
+
+    public static int generateRandomNumber(Random random, int minValue, int maxValue) {
+        return random.nextInt(maxValue - minValue + 1) + minValue;
+    }
 }
