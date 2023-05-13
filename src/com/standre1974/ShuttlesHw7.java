@@ -8,6 +8,15 @@ public class ShuttlesHw7 {
         int numberToCheck = 0;
         int currentShuttleNumber = 0;
 
+        while (numberOfShuttles > currentShuttleNumber) {
+            ++numberToCheck;
+            while (isNotValid(prohibitedNumbers, numberToCheck)) {
+                ++numberToCheck;
+            }
+            shuttles[currentShuttleNumber] = numberToCheck;
+            ++currentShuttleNumber;
+        }
+
     }
 
     private static boolean isNotValid(int[] prohibitedNumbers, int numberToCheck) {
