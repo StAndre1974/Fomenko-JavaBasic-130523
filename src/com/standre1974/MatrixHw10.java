@@ -43,6 +43,24 @@ public class MatrixHw10 {
             }
         }
 
+        System.out.print("\nINITIAL MATRIX:\n");
+        for (int i = 0; i < matrixSideA; i++) {
+            System.out.print("| ");
+            for (int j = 0; j < matrixSideB; j++) {
+                System.out.printf("%03d ", initialMatrixAxB[i][j]);
+            }
+            System.out.println("|");
+        }
+
+        System.out.print("\nTRANSPOSED 90 MATRIX:\n");
+        for (int j = 0; j < matrixSideB; j++) {
+            System.out.print("|");
+            for (int i = 0; i < matrixSideA; i++) {
+                System.out.printf("%4d", matrixBxAx90[j][i]);   //можливо цей варіант виводу краще
+            }
+            System.out.println(" |");
+        }
+
 
 
     }
