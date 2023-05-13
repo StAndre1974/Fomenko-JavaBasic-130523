@@ -27,6 +27,9 @@ public class MatrixHw10 {
         int[][] initialMatrixAxB = new int[matrixSideA][matrixSideB];
         int[][] matrixBxAx90 = new int[matrixSideB][matrixSideA];
 
+        int minNumber = 0;
+        int maxNumber = 1000;
+        Random random = new Random();
 
 
     }
