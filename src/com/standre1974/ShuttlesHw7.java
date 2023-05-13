@@ -10,6 +10,17 @@ public class ShuttlesHw7 {
 
     }
 
+    private static boolean isNotValid(int[] prohibitedNumbers, int numberToCheck) {
+        String numberToCheckString = Integer.toString(numberToCheck);
+        for (int valueProhibitedNumbers : prohibitedNumbers) {
+            String prohibitedNumberString = Integer.toString(valueProhibitedNumbers);
+            if (numberToCheckString.contains(prohibitedNumberString)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
 }
 
 
