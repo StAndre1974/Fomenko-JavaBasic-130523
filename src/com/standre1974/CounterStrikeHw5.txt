@@ -1,0 +1,104 @@
+package com.standre1974;
+
+import java.util.Scanner;
+/*
+ввести ім'я першої команди
+ввести кількість фрагів для 5-ти гравців першої команди (тобто має бути 5 змінних)
+ввести ім'я другої команди
+ввести кількість фрагів для 5-ти гравців другої команди (тобто має бути 5 змінних)
+підрахувати середнє арифметичне балів кожної команди
+порівняти результати команд та визначити переможця
+вивести у консоль:
+"Перемогла команда" + teamName + "набрала" + result + "очків"
+ */
+
+public class CounterStrikeHw5 {
+    public static void main(String[] args) {
+        // створити змінну кількості команд n
+        // for a = 1 to n ввести кількість гравців в команді a(n)
+        // використати цикл whle i <= n
+        // запрошувати введення назви для кожної команди
+        // enter the number of teams
+        //enter the number of team players 1
+        // int[] marks = new int[10];
+
+        int maxFraf = 0;
+        int maxIndexFrag = 0;
+
+        int numberTeams = scanInputInt("Enter the number of teams:\n"); // введення кількості команд
+//        System.out.println(numberTeams);
+
+        int[] totalTeamFrags = new int[numberTeams]; // ініціалізація масиву фрагів
+        String[] totalNamesOfTeams = new String[numberTeams]; // ініціалізація масиву команд
+        int[] totalPlayersInTeam = new int[numberTeams]; // ініціалізація масиву кількості гравців в командах
+//        long[] averageTeamFrags = new long[numberTeams]; // ініціалізація масиву середньої кількості фрагів команд
+
+
+        for (int teamNumber = 1; teamNumber <= numberTeams; teamNumber++) { // перебирання команд
+            int totalFrags = 0;
+            String nameTeam = scanInputString("Enter name Team" + teamNumber + ":\n"); // введення назви команди
+            int numberPlayers = scanInputInt("Enter the number of team" + teamNumber + " players:\n"); //
+            // введення кількості гравців в команді
+
+            for (int playerNumber = 1; playerNumber <= numberPlayers; playerNumber++) { // перебирання гравців
+                int numberFrags = scanInputInt("Enter the number of frags player" + playerNumber + ":\n"); //
+                // введення кількості фрагів у гравця
+                totalFrags = totalFrags + numberFrags;  // сумарна кількість фрагів у гравця
+            }
+
+            totalNamesOfTeams[teamNumber - 1] = nameTeam;  // додавання назви n-ї команди в масив
+            totalPlayersInTeam[teamNumber - 1] = numberPlayers;  // додавання кількості гравців в масив
+            totalTeamFrags[teamNumber - 1] = totalFrags;  // додавання кількість фрагів у n-ї команди в масив
+//            averageTeamFrags[teamNumber - 1] = totalFrags / numberPlayers;  // додавання середньої кількості фрагів команди в масив
+        }
+
+
+        for (int i = 0; i < totalTeamFrags.length - 1; i++) {
+            if (totalTeamFrags[i] > totalTeamFrags[i + 1]) {
+                maxFraf = totalTeamFrags[i];
+                maxIndexFrag = i;
+            } else {
+                maxFraf = totalTeamFrags[i + 1];
+                maxIndexFrag = i + 1;
+            }
+        }
+        for (int i = 0; i < totalTeamFrags.length; i++) {
+//            System.out.println("Average number of frags of the Team" + (i + 1) + " = " + averageTeamFrags[i]);
+            System.out.println("Average number of frags of the Team" + (i + 1) + " = " + totalTeamFrags[i]
+                    / totalPlayersInTeam[i]);
+
+
+        }
+        System.out.println(maxFraf);
+        System.out.println("Перемогла команда " + totalNamesOfTeams[maxIndexFrag] + "набрала " + maxFraf + "очків");
+
+    }
+
+    public static String scanInputString(String nameInputOption) {  // метод запитує введення текстової строки,
+        // з назвою, яка задається змінною 'nameInputOption'
+
+        Scanner scan = new Scanner(System.in);
+        System.out.print(nameInputOption);
+        return scan.nextLine();
+
+    }
+
+    public static int scanInputInt(String nameInputOption) {    // метод запитує введення числа типу int,
+        // з назвою, яка задається змінною 'nameInputOption' та перевіряє введене значення на відповідність int
+        Scanner scan = new Scanner(System.in);
+        System.out.print(nameInputOption);
+        try {
+            int a = scan.nextInt();
+            if (a >= 0) {
+                return a;
+            } else {
+                System.out.println("Invalid value entered");
+            }
+
+        } catch (Exception e) {
+            System.out.println("Invalid value entered");
+        }
+        return scanInputInt(nameInputOption);
+    }
+
+}

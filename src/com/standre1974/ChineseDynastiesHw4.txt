@@ -1,0 +1,45 @@
+package com.standre1974;
+/*
+За владу в стародавньому Китаї боролися дві династії: Лі та Мінь.
+З кожного боку боролися 3 типи воїнів з такими показниками атаки:
+Лі:
+воїн - 13
+лучник - 24
+вершник - 46
+Мінь:
+воїн - 9
+лучник - 35
+вершник - 12
+Розрахувати: загальний показник атаки для обох династій, якщо відомо, що воїнів династії Лі кожного типу було 860,
+а кількість воїнів династії Мінь кожного типу в півтора рази більша.
+Вивести в консоль значення загальної атаки кожної армії;
+ */
+
+
+public class ChineseDynastiesHw4 {
+    public static void main(String[] args) {
+
+        int warriorAttackLi = 13;
+        int archerAttackLi = 24;
+        int riderAttackLi = 46;
+        int numberTypeTroopsLi = 860;
+
+        int warriorAttackMin = 9;
+        int archerAttackMin = 35;
+        int riderAttackMin = 12;
+
+        float ratioTroopsMinToLi = 1.5F;
+
+        int totalAttackLi = totalAttack(warriorAttackLi, archerAttackLi, riderAttackLi, numberTypeTroopsLi);
+        System.out.println(totalAttackLi);
+
+        int totalAttackMin = (int) (ratioTroopsMinToLi * totalAttack(warriorAttackMin, archerAttackMin, riderAttackMin,
+                numberTypeTroopsLi));
+        System.out.println(totalAttackMin);
+
+    }
+
+    public static int totalAttack(int warriorAttack, int archerAttack, int riderAttack, int numberTypeTroops) {
+        return (warriorAttack + archerAttack + riderAttack) * numberTypeTroops;
+    }
+}
