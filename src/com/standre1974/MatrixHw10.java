@@ -8,6 +8,22 @@ public class MatrixHw10 {
         Scanner scanner = new Scanner(System.in);
         scanner.useDelimiter("\n");
 
+        System.out.print("Enter the initial Matrix Height (0 - exit): ");
+        int matrixSideA = checkInputNumberInt(scanner);
+        if (matrixSideA == 0) {
+            System.out.println("Exit");
+            System.exit(0);
+        }
+        System.out.println("You entered Matrix Height = " + matrixSideA);
+
+        System.out.print("Enter the initial Matrix Width (0 - exit): ");
+        int matrixSideB = checkInputNumberInt(scanner);
+        System.out.println("You entered Matrix Width = " + matrixSideB);
+        if (matrixSideB == 0) {
+            System.out.println("Exit");
+            System.exit(0);
+        }
+
     }
 
     //METHODS
