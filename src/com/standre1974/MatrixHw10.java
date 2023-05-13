@@ -31,6 +31,19 @@ public class MatrixHw10 {
         int maxNumber = 1000;
         Random random = new Random();
 
+        for (int i = 0; i < matrixSideA; i++) {
+            for (int j = 0; j < matrixSideB; j++) {
+                initialMatrixAxB[i][j] = generateRandomNumber(random, minNumber, maxNumber);
+            }
+        }
+
+        for (int j = 0; j < matrixSideB; j++) {
+            for (int k = 0; k < matrixSideA; k++) {
+                matrixBxAx90[j][k] = initialMatrixAxB[matrixSideA - k - 1][j];
+            }
+        }
+
+
 
     }
 
