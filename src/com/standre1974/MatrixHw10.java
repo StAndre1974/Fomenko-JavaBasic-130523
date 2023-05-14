@@ -11,7 +11,6 @@ public class MatrixHw10 {
         System.out.print("Enter the Height and the Width of the Matrix(0 - exit): \n");
 
         int[][] matrix = new int[checkInputNumberInt(scanner)][checkInputNumberInt(scanner)];
-        int[][] transposedMatrix = new int[matrix[0].length][matrix.length];
 
         int minNumber = 0;
         int maxNumber = 1000;
@@ -22,12 +21,8 @@ public class MatrixHw10 {
                 matrix[i][j] = generateRandomNumber(random, minNumber, maxNumber);
             }
         }
+        int[][] transposedMatrix = transposeMatrix(matrix);
 
-        for (int j = 0; j < matrix[0].length; j++) {
-            for (int k = 0; k < matrix.length; k++) {
-                transposedMatrix[j][k] = matrix[k][j];
-            }
-        }
 
         System.out.print("\nINITIAL MATRIX:\n");
         printMatrix(matrix);
@@ -65,5 +60,15 @@ public class MatrixHw10 {
             System.out.println(" |");
         }
 
+    }
+
+    public static int[][] transposeMatrix(int[][] matrix){
+        int[][] transposedMatrix = new int [matrix[0].length][matrix.length];
+        for (int j = 0; j < matrix[0].length; j++) {
+            for (int k = 0; k < matrix.length; k++) {
+                transposedMatrix[j][k] = matrix[k][j];
+            }
+        }
+        return transposedMatrix;
     }
 }
