@@ -22,24 +22,6 @@ public class MatrixHw10 {
                 matrix[i][j] = generateRandomNumber(random, minNumber, maxNumber);
             }
         }
-        /*
-        0   1   2   3
-        4   5   6   7
-        8   9   10  11
-
-        0   4   8
-        1   5   9
-        2   6   10
-        3   7   11
-
-        h+w
-        00  10  20
-        01  11  21
-        02  12  22
-        03  13  23
-
-
-         */
 
         for (int j = 0; j < matrix[0].length; j++) {
             for (int k = 0; k < matrix.length; k++) {
@@ -48,25 +30,10 @@ public class MatrixHw10 {
         }
 
         System.out.print("\nINITIAL MATRIX:\n");
-        for (int[] ints : matrix) {
-            System.out.print("| ");
-            for (int j = 0; j < matrix[0].length; j++) {
-                System.out.printf("%4d ", ints[j]);
-            }
-            System.out.println("|");
-        }
+        printMatrix(matrix);
 
         System.out.print("\nTRANSPOSED MATRIX:\n");
-        for (int j = 0; j < matrix[0].length; j++) {
-            System.out.print("|");
-            for (int i = 0; i < matrix.length; i++) {
-                System.out.printf("%4d", transposedMatrix[j][i]);   //можливо цей варіант виводу краще
-            }
-            System.out.println(" |");
-        }
-
-
-
+        printMatrix(transposedMatrix);
     }
 
     //METHODS
@@ -87,5 +54,16 @@ public class MatrixHw10 {
 
     public static int generateRandomNumber(Random random, int minValue, int maxValue) {
         return random.nextInt(maxValue - minValue + 1) + minValue;
+    }
+
+    public static void printMatrix(int[][] matrix){
+        for (int[] ints : matrix) {
+            System.out.print("|");
+            for (int k = 0; k < matrix[0].length; k++) {
+                System.out.printf("%4d", ints[k]);
+            }
+            System.out.println(" |");
+        }
+
     }
 }
