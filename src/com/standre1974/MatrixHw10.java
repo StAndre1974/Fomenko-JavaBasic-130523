@@ -10,19 +10,11 @@ public class MatrixHw10 {
 
         System.out.print("Enter the initial Matrix Height (0 - exit): ");
         int sideA = checkInputNumberInt(scanner);
-        if (sideA == 0) {
-            System.out.println("Exit");
-            System.exit(0);
-        }
         System.out.println("You entered Matrix Height = " + sideA);
 
         System.out.print("Enter the initial Matrix Width (0 - exit): ");
         int sideB = checkInputNumberInt(scanner);
         System.out.println("You entered Matrix Width = " + sideB);
-        if (sideB == 0) {
-            System.out.println("Exit");
-            System.exit(0);
-        }
 
         int[][] matrix = new int[sideA][sideB];
         int[][] transposedMatrix = new int[sideB][sideA];
@@ -70,7 +62,9 @@ public class MatrixHw10 {
         while (true) {
             if (scanner.hasNextInt()) {
                 int enteredNumber = scanner.nextInt();
-                if (enteredNumber >= 0) {
+                if (enteredNumber == 0) {
+                    System.exit(0);
+                }else {
                     return enteredNumber;
                 }
             }
