@@ -2,8 +2,9 @@ package com.standre1974;
 
 import java.util.Random;
 import java.util.Scanner;
+
 public class MatrixHw10 {
-    public static void main(String[] args){
+    public static void main(String[] args) {
 
         Scanner scanner = new Scanner(System.in);
         scanner.useDelimiter("\n");
@@ -38,7 +39,7 @@ public class MatrixHw10 {
                 int enteredNumber = scanner.nextInt();
                 if (enteredNumber == 0) {
                     System.exit(0);
-                }else if (enteredNumber > 0){
+                } else if (enteredNumber > 0) {
                     return enteredNumber;
                 }
             }
@@ -51,7 +52,7 @@ public class MatrixHw10 {
         return random.nextInt(maxValue - minValue + 1) + minValue;
     }
 
-    public static void printMatrix(int[][] matrix){
+    public static void printMatrix(int[][] matrix) {
         for (int[] ints : matrix) {
             System.out.print("|");
             for (int k = 0; k < matrix[0].length; k++) {
@@ -62,8 +63,8 @@ public class MatrixHw10 {
 
     }
 
-    public static int[][] transposeMatrix(int[][] matrix){
-        int[][] transposedMatrix = new int [matrix[0].length][matrix.length];
+    public static int[][] transposeMatrix(int[][] matrix) {
+        int[][] transposedMatrix = new int[matrix[0].length][matrix.length];
         for (int j = 0; j < matrix[0].length; j++) {
             for (int k = 0; k < matrix.length; k++) {
                 transposedMatrix[j][k] = matrix[k][j];
