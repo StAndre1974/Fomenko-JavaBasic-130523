@@ -9,54 +9,54 @@ public class MatrixHw10 {
         scanner.useDelimiter("\n");
 
         System.out.print("Enter the initial Matrix Height (0 - exit): ");
-        int matrixSideA = checkInputNumberInt(scanner);
-        if (matrixSideA == 0) {
+        int sideA = checkInputNumberInt(scanner);
+        if (sideA == 0) {
             System.out.println("Exit");
             System.exit(0);
         }
-        System.out.println("You entered Matrix Height = " + matrixSideA);
+        System.out.println("You entered Matrix Height = " + sideA);
 
         System.out.print("Enter the initial Matrix Width (0 - exit): ");
-        int matrixSideB = checkInputNumberInt(scanner);
-        System.out.println("You entered Matrix Width = " + matrixSideB);
-        if (matrixSideB == 0) {
+        int sideB = checkInputNumberInt(scanner);
+        System.out.println("You entered Matrix Width = " + sideB);
+        if (sideB == 0) {
             System.out.println("Exit");
             System.exit(0);
         }
 
-        int[][] initialMatrixAxB = new int[matrixSideA][matrixSideB];
-        int[][] matrixBxAx90 = new int[matrixSideB][matrixSideA];
+        int[][] matrix = new int[sideA][sideB];
+        int[][] transposedMatrix = new int[sideB][sideA];
 
         int minNumber = 0;
         int maxNumber = 1000;
         Random random = new Random();
 
-        for (int i = 0; i < matrixSideA; i++) {
-            for (int j = 0; j < matrixSideB; j++) {
-                initialMatrixAxB[i][j] = generateRandomNumber(random, minNumber, maxNumber);
+        for (int i = 0; i < sideA; i++) {
+            for (int j = 0; j < sideB; j++) {
+                matrix[i][j] = generateRandomNumber(random, minNumber, maxNumber);
             }
         }
 
-        for (int j = 0; j < matrixSideB; j++) {
-            for (int k = 0; k < matrixSideA; k++) {
-                matrixBxAx90[j][k] = initialMatrixAxB[matrixSideA - k - 1][j];
+        for (int j = 0; j < sideB; j++) {
+            for (int k = 0; k < sideA; k++) {
+                transposedMatrix[j][k] = matrix[sideA - k - 1][j];
             }
         }
 
         System.out.print("\nINITIAL MATRIX:\n");
-        for (int i = 0; i < matrixSideA; i++) {
+        for (int i = 0; i < sideA; i++) {
             System.out.print("| ");
-            for (int j = 0; j < matrixSideB; j++) {
-                System.out.printf("%03d ", initialMatrixAxB[i][j]);
+            for (int j = 0; j < sideB; j++) {
+                System.out.printf("%03d ", matrix[i][j]);
             }
             System.out.println("|");
         }
 
         System.out.print("\nTRANSPOSED 90 MATRIX:\n");
-        for (int j = 0; j < matrixSideB; j++) {
+        for (int j = 0; j < sideB; j++) {
             System.out.print("|");
-            for (int i = 0; i < matrixSideA; i++) {
-                System.out.printf("%4d", matrixBxAx90[j][i]);   //можливо цей варіант виводу краще
+            for (int i = 0; i < sideA; i++) {
+                System.out.printf("%4d", transposedMatrix[j][i]);   //можливо цей варіант виводу краще
             }
             System.out.println(" |");
         }
