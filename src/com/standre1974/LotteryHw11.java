@@ -13,9 +13,17 @@ first[3] повинен дорівнювати second[3], як показано 
 [1, 1, 2, 3, 5, 6, 9]
 
 Кількість збігів: 3
+
+- ввести кількість номерів лотереї (maxLotteryNumbers)
+- ввести кількість номерів, які повинен вгадати користувач (userNumbersGuess)
+- створити метод генерації номерів лотереї (0-max)
+- створити метод генерації номерів user (0-max)
+- створити метод генерації індексів, які заповнив user
+
  */
 
 import java.util.Arrays;
+import java.util.Random;
 import java.util.Scanner;
 
 public class LotteryHw11 {
@@ -44,6 +52,11 @@ public class LotteryHw11 {
             scanner.nextLine();
         }
     }
+
+    public static int generateRandomNumber(Random random, int minValue, int maxValue) {
+        return random.nextInt(maxValue - minValue + 1) + minValue;
+    }
+
 
     private static void sortIntArray(int[] arr) {     // int[] arr = {4, 2, 7, 11, 9, 89, 10, 6, 8, 44, 56};  45 cycles
         int intermediateVariable;
