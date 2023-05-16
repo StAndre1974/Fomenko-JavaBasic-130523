@@ -22,15 +22,22 @@ public class LotteryHw11 {
     public static void main(String[] args) {
 
 
-        int[] arr = {4, 2, 7, 11, 9, 12, 3, 4, 23, 67, 89, 10, 6, 8, 44, 56};
+        int[] arr = {4, 2, 7, 11, 9, 89, 10, 6, 8, 44, 56};
+        System.out.println(Arrays.toString(arr));
+        sortArray(arr);
+        System.out.println(Arrays.toString(arr));
+
+    }
+
+    private static void sortArray(int[] arr) {     // int[] arr = {4, 2, 7, 11, 9, 89, 10, 6, 8, 44, 56};  45 cycles
         int intermediateVariable;
         int count = 0;
 
         boolean flag = true;
-        int end = arr.length;
+        int end = arr.length - 1;
         while (flag) {
             flag = false;
-            for (int i = 0; i < end - 1; i++) {
+            for (int i = 0; i < end; i++) {
                 if (arr[i] > arr[i + 1]) {
                     intermediateVariable = arr[i];
                     arr[i] = arr[i + 1];
@@ -38,31 +45,48 @@ public class LotteryHw11 {
                     flag = true;
                 }
                 count++;
+
             }
             end--;
-
         }
-        System.out.println(Arrays.toString(arr));
         System.out.println(count);
 
-
-
     }
 
-    public static void sortIntArray(int[] array) {
-        int intermediateVariable;
-        while (true) {
-            boolean flag = false;
-            for (int i = 0; i < array.length - 1; i++) {
-                if (array[i] > array[i + 1]) {
-                    intermediateVariable = array[i];
-                    array[i] = array[i + 1];
-                    array[i + 1] = intermediateVariable;
+//    private static void sortArray(int[] arr) {      // int[] arr = {4, 2, 7, 11, 9, 89, 10, 6, 8, 44, 56};  100 cycles
+//        int intermediateVariable;
+//        int count = 0;
+//        int end = arr.length - 1;
+//        for (int k = 1; k < arr.length; k++) {
+//            for (int i = 0; i < arr.length - 1; i++) {
+//                if (arr[i] > arr[i + 1]) {
+//                    intermediateVariable = arr[i];
+//                    arr[i] = arr[i + 1];
+//                    arr[i + 1] = intermediateVariable;
+//                }
+//                count++;
+//            }
+//        }
+//        System.out.println(count);
+//    }
 
-                }
-                flag = true;
-            }
 
-        }
-    }
+//    private static void sortArray(int[] arr) {      // int[] arr = {4, 2, 7, 11, 9, 89, 10, 6, 8, 44, 56};  55 cycles
+//        int intermediateVariable;
+//        int count = 0;
+//        int end = arr.length - 1;
+//        for (int k = 1; k < arr.length; k++) {
+//            for (int i = 0; i < arr.length - k; i++) {
+//                if (arr[i] > arr[i + 1]) {
+//                    intermediateVariable = arr[i];
+//                    arr[i] = arr[i + 1];
+//                    arr[i + 1] = intermediateVariable;
+//                }
+//                count++;
+//            }
+//        }
+//        System.out.println(count);
+//    }
+
+
 }
