@@ -15,8 +15,8 @@ first[3] повинен дорівнювати second[3], як показано 
 Кількість збігів: 3
  */
 
-import java.lang.reflect.Array;
 import java.util.Arrays;
+import java.util.Scanner;
 
 public class LotteryHw11 {
     public static void main(String[] args) {
@@ -24,12 +24,28 @@ public class LotteryHw11 {
 
         int[] arr = {4, 2, 7, 11, 9, 89, 10, 6, 8, 44, 56};
         System.out.println(Arrays.toString(arr));
-        sortArray(arr);
+        sortIntArray(arr);
         System.out.println(Arrays.toString(arr));
 
     }
+    // METHODS
 
-    private static void sortArray(int[] arr) {     // int[] arr = {4, 2, 7, 11, 9, 89, 10, 6, 8, 44, 56};  45 cycles
+    public static int checkInputNumberInt(Scanner scanner) {
+        while (true) {
+            if (scanner.hasNextInt()) {
+                int enteredNumber = scanner.nextInt();
+                if (enteredNumber == 0) {
+                    System.exit(0);
+                } else if (enteredNumber > 0) {
+                    return enteredNumber;
+                }
+            }
+            System.out.println("Enter valid number or 0 to exit");
+            scanner.nextLine();
+        }
+    }
+
+    private static void sortIntArray(int[] arr) {     // int[] arr = {4, 2, 7, 11, 9, 89, 10, 6, 8, 44, 56};  45 cycles
         int intermediateVariable;
         int count = 0;
 
@@ -53,7 +69,7 @@ public class LotteryHw11 {
 
     }
 
-//    private static void sortArray(int[] arr) {      // int[] arr = {4, 2, 7, 11, 9, 89, 10, 6, 8, 44, 56};  100 cycles
+//    private static void sortIntArray(int[] arr) {      // int[] arr = {4, 2, 7, 11, 9, 89, 10, 6, 8, 44, 56};  100 cycles
 //        int intermediateVariable;
 //        int count = 0;
 //        int end = arr.length - 1;
@@ -71,7 +87,7 @@ public class LotteryHw11 {
 //    }
 
 
-//    private static void sortArray(int[] arr) {      // int[] arr = {4, 2, 7, 11, 9, 89, 10, 6, 8, 44, 56};  55 cycles
+//    private static void sortIntArray(int[] arr) {      // int[] arr = {4, 2, 7, 11, 9, 89, 10, 6, 8, 44, 56};  55 cycles
 //        int intermediateVariable;
 //        int count = 0;
 //        int end = arr.length - 1;
