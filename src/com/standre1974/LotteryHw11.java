@@ -28,6 +28,11 @@ import java.util.Scanner;
 
 public class LotteryHw11 {
     public static void main(String[] args) {
+
+        int count = 0;
+        int minNumber = 0;
+        int maxNumber = 9;
+
         Random random = new Random();
 
         Scanner scanner = new Scanner(System.in);
@@ -35,36 +40,49 @@ public class LotteryHw11 {
 
         System.out.print("Enter the maximum number of lottery(0 - exit): \n");
         int[] lotteryNumbers = new int[checkInputNumberInt(scanner)];
-        int minNumber = 1;
-        int maxNumber = lotteryNumbers.length;
+        int[] userNumbers = new int[lotteryNumbers.length];
 
-        for (int i = 0; i < lotteryNumbers.length; i++) {
-                lotteryNumbers[i] = generateRandomNumber(random, minNumber, maxNumber);
-            }
-//        int[] lotteryNumbers1 = lotteryNumbers;
-//        int[] lotteryNumbers2 = lotteryNumbers;
+        if (lotteryNumbers.length > 10) {
+            maxNumber = lotteryNumbers.length;
+        }
 
-        System.out.println("lotteryNumbers before:\n" + Arrays.toString(lotteryNumbers));
+        generateMatrixNumbers(random, lotteryNumbers, minNumber, maxNumber);
+
+        generateMatrixNumbers(random, userNumbers, minNumber, maxNumber);
+
+//        System.out.println("Lottery random numbers before:\n" + Arrays.toString(lotteryNumbers));
         sortIntArray(lotteryNumbers);
-        System.out.println("lotteryNumbers after:\n" + Arrays.toString(lotteryNumbers));
+        System.out.println("Lottery numbers after sorting:\n" + Arrays.toString(lotteryNumbers));
         System.out.println();
 
+//        System.out.println("Lottery random numbers before:\n" + Arrays.toString(userNumbers));
+        sortIntArray(userNumbers);
+        System.out.println("Users numbers after:\n" + Arrays.toString(userNumbers));
+        System.out.println();
 
-//        System.out.println("lotteryNumbers before1:\n" + Arrays.toString(lotteryNumbers1));
-//        sortIntArray1(lotteryNumbers1);
-//        System.out.println("lotteryNumbers after1:\n" + Arrays.toString(lotteryNumbers1));
-//        System.out.println();
-//
-//        System.out.println("lotteryNumbers before2:\n" + Arrays.toString(lotteryNumbers2));
-//        sortIntArray2(lotteryNumbers2);
-//        System.out.println("lotteryNumbers after2:\n" + Arrays.toString(lotteryNumbers2));
-//        System.out.println();
+        System.out.print("Matched elements: { ");
+        for (int i = 0; i < lotteryNumbers.length; i++) {
+            if (lotteryNumbers[i] == userNumbers[i]) {
+                System.out.printf("[%d]:%d ", i, lotteryNumbers[i]);
+                count++;
+            }
+        }
+        if (count == 0) {
+            System.out.printf("None ");
 
-
-
+        }
+        System.out.println("}");
+        System.out.printf("Total %d elevtnts matched", count);
 
     }
+
+
     // METHODS
+    private static void generateMatrixNumbers(Random random, int[] matrix, int minNumber, int maxNumber) {
+        for (int i = 0; i < matrix.length; i++) {
+            matrix[i] = random.nextInt(maxNumber - minNumber + 1) + minNumber;
+        }
+    }
 
     public static int checkInputNumberInt(Scanner scanner) {
         while (true) {
@@ -87,8 +105,7 @@ public class LotteryHw11 {
 
     private static void sortIntArray(int[] arr) {     // int[] arr = {4, 2, 7, 11, 9, 89, 10, 6, 8, 44, 56};  45 cycles
         int intermediateVariable;
-        int count = 0;
-
+//        int count = 0;
         boolean flag = true;
         int end = arr.length - 1;
         while (flag) {
@@ -100,49 +117,48 @@ public class LotteryHw11 {
                     arr[i + 1] = intermediateVariable;
                     flag = true;
                 }
-                count++;
-
+//                count++;
             }
             end--;
         }
-        System.out.println(count);
+//        System.out.println(count);
 
     }
 
-    private static void sortIntArray1(int[] arr) {      // int[] arr = {4, 2, 7, 11, 9, 89, 10, 6, 8, 44, 56};  100 cycles
-        int intermediateVariable;
-        int count = 0;
-        int end = arr.length - 1;
-        for (int k = 1; k < arr.length; k++) {
-            for (int i = 0; i < arr.length - 1; i++) {
-                if (arr[i] > arr[i + 1]) {
-                    intermediateVariable = arr[i];
-                    arr[i] = arr[i + 1];
-                    arr[i + 1] = intermediateVariable;
-                }
-                count++;
-            }
-        }
-        System.out.println(count);
-    }
+//    private static void sortIntArray1(int[] arr) {      // int[] arr = {4, 2, 7, 11, 9, 89, 10, 6, 8, 44, 56};  100 cycles
+//        int intermediateVariable;
+//        int count = 0;
+//        int end = arr.length - 1;
+//        for (int k = 1; k < arr.length; k++) {
+//            for (int i = 0; i < arr.length - 1; i++) {
+//                if (arr[i] > arr[i + 1]) {
+//                    intermediateVariable = arr[i];
+//                    arr[i] = arr[i + 1];
+//                    arr[i + 1] = intermediateVariable;
+//                }
+//                count++;
+//            }
+//        }
+//        System.out.println(count);
+//    }
 
 
-    private static void sortIntArray2(int[] arr) {      // int[] arr = {4, 2, 7, 11, 9, 89, 10, 6, 8, 44, 56};  55 cycles
-        int intermediateVariable;
-        int count = 0;
-        int end = arr.length - 1;
-        for (int k = 1; k < arr.length; k++) {
-            for (int i = 0; i < arr.length - k; i++) {
-                if (arr[i] > arr[i + 1]) {
-                    intermediateVariable = arr[i];
-                    arr[i] = arr[i + 1];
-                    arr[i + 1] = intermediateVariable;
-                }
-                count++;
-            }
-        }
-        System.out.println(count);
-    }
+//    private static void sortIntArray2(int[] arr) {      // int[] arr = {4, 2, 7, 11, 9, 89, 10, 6, 8, 44, 56};  55 cycles
+//        int intermediateVariable;
+//        int count = 0;
+//        int end = arr.length - 1;
+//        for (int k = 1; k < arr.length; k++) {
+//            for (int i = 0; i < arr.length - k; i++) {
+//                if (arr[i] > arr[i + 1]) {
+//                    intermediateVariable = arr[i];
+//                    arr[i] = arr[i + 1];
+//                    arr[i + 1] = intermediateVariable;
+//                }
+//                count++;
+//            }
+//        }
+//        System.out.println(count);
+//    }
 
 
 }
