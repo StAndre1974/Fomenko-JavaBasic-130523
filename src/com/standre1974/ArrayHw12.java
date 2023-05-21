@@ -37,17 +37,67 @@ public class ArrayHw12 {
         System.out.print("Enter the maximum row length of Array (0 - exit): \n");
         int maxLengthRow = checkInputNumberInt(scanner);
 
+// СТВОРЕНННЯ ВКЛАДЕНИХ МАСИВІВ
         for (int i = 0; i < array.length; i++) {
             array[i] = createRandomArray(random, 0, maxLengthRow);
         }
 
+        System.out.print("\n");
+
+// ЗАПОВНЕННЯ ВКЛАДЕНИХ МАСИВІВ
         for (int i = 0; i < array.length; i++) {
-            System.out.print(Arrays.toString(array[i]));
+            fillArray(array[i], random, 0, maxLengthRow);
+        }
+        outArray(array);
+
+        System.out.print("Sorted:\n");
+
+
+// СОРТУВАННЯ ВКЛАДЕНИХ МАСИВІВ ЗА ЗРОСТАННЯМ (ПАРНІ РЯДКИ) ТА ЗА СПАДАННЯМ (НЕПАРНІ РЯДКИ)
+        sortUpIntArray2D(array);
+
+        sortDownIntArray2D(array);
+
+        outArray(array);
+
+// СУМА ВСИХ ЕЛЕМЕНТІВ МАСИВУ
+
+        System.out.print("Sum of array elements = " + sumArray(array));
+
+        System.out.print("\n");
+
+// МІНІМУМ ЕЛЕМЕНТІВ МАСИВУ
+
+        int counter = countArraysNonNull(array);
+        System.out.println("Counter1 = " + counter);
+
+        int[] minNumbersArray = extractMinNumbers(array);
+        System.out.println("Min numbers Array " + Arrays.toString(minNumbersArray));
+
+// АБСОЛЮТНИЙ МІНІМУМ ЕЛЕМЕНТІВ МАСИВУ
+        int absoluteMinimum = minIntArray(minNumbersArray);
+        System.out.println("Absolute minimum =" + absoluteMinimum);
+
+// ДІЛЕННЯ МАССИВУ НА АБСОЛЮТНИЙ МІНІМУМ ЕЛЕМЕНТІВ МАСИВУ
+        if (absoluteMinimum > 0) {
+            int[][] dividedArray = array;
+            for (int[] elementsLv1 : array) {
+                System.out.println("Before divided " + Arrays.toString(elementsLv1));
+                if (elementsLv1.length > 0) {
+                    for (int i = 0; i < elementsLv1.length; i++) {
+                        elementsLv1[i] = elementsLv1[i] / absoluteMinimum;
+                    }
+                }else
+                    System.out.println("After divided " + Arrays.toString(elementsLv1));
+            }
+
+        }else {
+            System.out.printf("Absolute minimum = %d, cannot be divided by 0",absoluteMinimum);
         }
 
-//            System.out.print(Arrays.toString(array));
 
     }
+
 
     //METHODS
     public static int checkInputNumberInt(Scanner scanner) {
@@ -69,13 +119,137 @@ public class ArrayHw12 {
         return random.nextInt(maxValue - minValue + 1) + minValue;
     }
 
+
     public static int[] createRandomArray(Random random, int minValue, int maxValue) {
-        int multiplierRND = 10;
-        int[] array = new int[random.nextInt(maxValue - minValue + 1) + minValue];
-        for (int i = 0; i < array.length; i++) {
-            array[i] = random.nextInt(maxValue * multiplierRND - minValue + 1) + minValue;
-        }
+        int[] array = new int[generateRandomNumber(random, minValue, maxValue)];
         return array;
+    }
+
+    public static void fillArray(int[] array, Random random, int minValue, int maxValue) {
+        int multiplierRND = 1;
+        int booster = 0;    // параметр впливає на значення абсолютного мінімума (збільшити, щоб виключити значення 0)
+        for (int i = 0; i < array.length; i++) {
+            array[i] = generateRandomNumber(random, minValue, maxValue) * multiplierRND + booster;
+        }
+    }
+
+    public static void outArray(int[][] array) {
+        System.out.print("[");
+        for (int i = 0; i < array.length; i++) {
+            System.out.print("{");
+            for (int k = 0; k < array[i].length; k++) {
+                System.out.printf("%4d", array[i][k]);
+            }
+            System.out.print("}");
+        }
+        System.out.print("]\n");
+    }
+
+    private static void sortUpIntArray(int[] array) {
+        boolean flag = true;
+        int end = array.length - 1;
+        while (flag) {
+            flag = false;
+            for (int i = 0; i < end; i++) {
+                if (array[i] > array[i + 1]) {
+                    int tmp = array[i];
+                    array[i] = array[i + 1];
+                    array[i + 1] = tmp;
+                    flag = true;
+                }
+            }
+            end--;
+        }
+    }
+
+    private static void sortDownIntArray(int[] array) {
+        boolean flag = true;
+        int end = array.length - 1;
+        while (flag) {
+            flag = false;
+            for (int i = 0; i < end; i++) {
+                if (array[i] < array[i + 1]) {
+                    int tmp = array[i];
+                    array[i] = array[i + 1];
+                    array[i + 1] = tmp;
+                    flag = true;
+                }
+            }
+            end--;
+        }
+    }
+
+    private static void sortUpIntArray2D(int[][] array) {
+        for (int i = 0; i < array.length; i = i + 2) {
+            sortUpIntArray(array[i]);
+        }
+    }
+
+    private static void sortDownIntArray2D(int[][] array) {
+        for (int i = 1; i < array.length; i = i + 2) {
+            sortDownIntArray(array[i]);
+        }
+    }
+
+    private static int sumArray(int[][] array) {
+        int sumArray = 0;
+        for (int[] elementsLv1 : array) {
+            for (int elementsLv2 : elementsLv1) {
+                sumArray = sumArray + elementsLv2;
+            }
+        }
+        return sumArray;
+
+    }
+
+    private static int countArraysNonNull(int[][] array) {
+        int counter = 0;
+        for (int[] elementsLv2 : array) {
+            if (elementsLv2.length > 0) {
+                counter++;
+            }
+        }
+        return counter;
+    }
+
+    private static int minIntArray(int[] array) {
+        int min = array[0];
+        for (int number : array) {
+            if (min > number) {
+                min = number;
+            }
+        }
+        return min;
+    }
+
+//    private static int[] minIntArray2D(int[][] array) {
+//        int counter = countArraysNonNull(array);
+//        int[] minNumbersArray = new int[counter];
+//        counter = 0;
+//        for (int[] elementLv2 : array) {
+//            if (elementLv2.length > 0) {
+//                minNumbersArray[counter] = minIntArray(elementLv2);
+//                counter++;
+//            }
+//        }
+//        return minNumbersArray;
+//    }
+
+    private static int[] extractMinNumbers(int[][] array) {
+        int counter;
+        int[] minNumbersArray = new int[countArraysNonNull(array)];
+//        System.out.println("minNumbersArray =" + Arrays.toString(minNumbersArray));
+//
+        counter = 0;
+//        System.out.println("Counter2 = " + counter);
+
+        for (int[] elements : array) {
+            if (elements.length > 0) {
+                minNumbersArray[counter] = minIntArray(elements);
+                counter++;
+            }
+        }
+        return minNumbersArray;
     }
 
 
