@@ -14,15 +14,19 @@ public class ArrayHw12 {
         Random random = new Random();
 
         System.out.print("Enter the count of Array rows (0 - exit): \n");
+
         int maxColums = readInt(scanner);
 
         int[][] array;
 
         System.out.print("Enter the maximum row length of Array (0 - exit): \n");
+
         int maxRowLength = readInt(scanner);
+
 
         System.out.print("\n");
         array = generateMatrix(random, maxRowLength, maxColums);
+
 
         System.out.print("Unsorted Array:\n");
         outArrayToString(array);
@@ -51,6 +55,7 @@ public class ArrayHw12 {
         System.out.println("Before divided: ");
         outArray(array);
         System.out.println("After divided: ");
+
         outArray(divideMatrix(array, absoluteMinimum));
 
     }
@@ -85,6 +90,7 @@ public class ArrayHw12 {
             for (int k = 0; k < array[i].length; k++) {
                 array[i][k] = generateRandomNumber(random, 0, rows);
             }
+
         }
         return array;
     }
@@ -165,6 +171,7 @@ public class ArrayHw12 {
         int[] minNumbersArray = new int[counter];
 
         counter = 0;
+
         for (int[] elements : array) {
             if (elements.length > 0) {
                 minNumbersArray[counter] = minIntArray(elements);
@@ -174,12 +181,14 @@ public class ArrayHw12 {
         return minNumbersArray;
     }
 
+
     private static int[][] divideMatrix(int[][] array, int divider) {
         if (divider > 0) {
             for (int[] row : array) {
                 if (row.length > 0) {
                     for (int i = 0; i < row.length; i++) {
                         row[i] = row[i] / divider;
+
                     }
                 }
             }
@@ -187,7 +196,9 @@ public class ArrayHw12 {
             System.out.printf("Absolute minimum = %d, cannot be divided by 0\n", divider);
             System.out.print("Array has not changed:\n");
         }
+
         return array;
     }
+
 
 }
