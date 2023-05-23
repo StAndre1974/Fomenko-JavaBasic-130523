@@ -14,37 +14,32 @@ public class ArrayHw12 {
         Random random = new Random();
 
         System.out.print("Enter the count of Array rows (0 - exit): \n");
+        int maxColums = readInt(scanner);
 
-        int[][] array = new int[checkInputNumberInt(scanner)][];
+        int[][] array;
 
         System.out.print("Enter the maximum row length of Array (0 - exit): \n");
-        int maxLengthRow = checkInputNumberInt(scanner);
-
-        for (int i = 0; i < array.length; i++) {
-            array[i] = createRandomArray(random, 0, maxLengthRow);
-        }
+        int maxRowLength = readInt(scanner);
 
         System.out.print("\n");
+        array = generateMatrix(random, maxRowLength, maxColums);
 
-        for (int[] element : array) {
-            fillArray(element, random, 0, maxLengthRow);
-        }
         System.out.print("Unsorted Array:\n");
-        outArray(array);
+        outArrayToString(array);
         System.out.print("\n");
 
-        sortUpIntArray2D(array);
+        sortIntMatrix(array, 0, true);
 
-        sortDownIntArray2D(array);
+        sortIntMatrix(array, 1, false);
 
         System.out.print("Sorted Array:\n");
-        outArray(array);
+        outArrayToString(array);
         System.out.print("\n");
 
         System.out.println("Sum of array elements = " + sumArray(array));
         System.out.print("\n");
 
-        int[] minNumbersArray = extractMinNumbers(array);
+        int[] minNumbersArray = createArrayWithMinNumbers(array);
         System.out.println("Min numbers Array " + Arrays.toString(minNumbersArray));
         System.out.print("\n");
 
@@ -56,11 +51,11 @@ public class ArrayHw12 {
         System.out.println("Before divided: ");
         outArray(array);
         System.out.println("After divided: ");
-        outArray(divideArray2D(array, absoluteMinimum));
+        outArray(divideMatrix(array, absoluteMinimum));
 
     }
 
-    public static int checkInputNumberInt(Scanner scanner) {
+    public static int readInt(Scanner scanner) {
         while (true) {
             if (scanner.hasNextInt()) {
                 int enteredNumber = scanner.nextInt();
@@ -79,19 +74,22 @@ public class ArrayHw12 {
         return random.nextInt(maxValue - minValue + 1) + minValue;
     }
 
-    public static int[] createRandomArray(Random random, int minValue, int maxValue) {
-        return new int[generateRandomNumber(random, minValue, maxValue)];
-    }
-
-    public static void fillArray(int[] array, Random random, int minValue, int maxValue) {
-        int multiplierRND = 1;
-        int booster = 0;    // ЗБІЛЬШУЄ АБСОЛЮТНИЙ МІНІМУМ (ДЛЯ ПЕРЕВІРКИ РОБОТИ КОДУ)
-        for (int i = 0; i < array.length; i++) {
-            array[i] = generateRandomNumber(random, minValue, maxValue) * multiplierRND + booster;
+    public static int[][] generateMatrix(Random random, int rows, int maxColumns) {
+        int[][] array = new int[maxColumns][rows];
+        for (int i = 0; i < maxColumns; i++) {
+            int size = generateRandomNumber(random, 0, rows);
+            array[i] = new int[size];
         }
+
+        for (int i = 0; i < maxColumns; i++) {
+            for (int k = 0; k < array[i].length; k++) {
+                array[i][k] = generateRandomNumber(random, 0, rows);
+            }
+        }
+        return array;
     }
 
-    public static void outArray(int[][] array) {
+    public static void outArrayToString(int[][] array) {
         System.out.print("[");
         for (int[] elementLv1 : array) {
             System.out.print("{");
@@ -103,49 +101,34 @@ public class ArrayHw12 {
         System.out.print("]\n");
     }
 
-    private static void sortUpIntArray(int[] array) {
-        boolean flag = true;
-        int end = array.length - 1;
-        while (flag) {
-            flag = false;
-            for (int i = 0; i < end; i++) {
-                if (array[i] > array[i + 1]) {
-                    int tmp = array[i];
-                    array[i] = array[i + 1];
-                    array[i + 1] = tmp;
-                    flag = true;
-                }
+    public static void outArray(int[][] array) {
+        System.out.println("[");
+        for (int[] row : array) {
+            System.out.print("   {");
+            for (int cell : row) {
+                System.out.printf("%4d", cell);
             }
-            end--;
+            System.out.println("}");
         }
+        System.out.println("]");
     }
 
-    private static void sortDownIntArray(int[] array) {
-        boolean flag = true;
-        int end = array.length - 1;
-        while (flag) {
-            flag = false;
-            for (int i = 0; i < end; i++) {
-                if (array[i] < array[i + 1]) {
-                    int tmp = array[i];
-                    array[i] = array[i + 1];
-                    array[i + 1] = tmp;
-                    flag = true;
+    private static void sortIntMatrix(int[][] array, int Odd1Even0, boolean ascTrueDesFalse) {
+        for (int i = Odd1Even0; i < array.length; i += 2) {
+            boolean flag = true;
+            int end = array[i].length - 1;
+            while (flag) {
+                flag = false;
+                for (int k = 0; k < end; k++) {
+                    if ((array[i][k] > array[i][k + 1]) == ascTrueDesFalse) {
+                        int tmp = array[i][k];
+                        array[i][k] = array[i][k+1];
+                        array[i][k+1] = tmp;
+                        flag = true;
+                    }
                 }
+                end--;
             }
-            end--;
-        }
-    }
-
-    private static void sortUpIntArray2D(int[][] array) {
-        for (int i = 0; i < array.length; i = i + 2) {
-            sortUpIntArray(array[i]);
-        }
-    }
-
-    private static void sortDownIntArray2D(int[][] array) {
-        for (int i = 1; i < array.length; i = i + 2) {
-            sortDownIntArray(array[i]);
         }
     }
 
@@ -159,17 +142,10 @@ public class ArrayHw12 {
         return sumArray;
     }
 
-    private static int countArraysNonNull(int[][] array) {
-        int counter = 0;
-        for (int[] elementsLv2 : array) {
-            if (elementsLv2.length > 0) {
-                counter++;
-            }
+    private static Integer minIntArray(int[] array) {
+        if (array.length == 0) {
+            return null;        // ДЯКУЮ ЗА ЦІННУ ПОРАДУ)
         }
-        return counter;
-    }
-
-    private static int minIntArray(int[] array) {
         int min = array[0];
         for (int number : array) {
             if (min > number) {
@@ -179,11 +155,16 @@ public class ArrayHw12 {
         return min;
     }
 
-    private static int[] extractMinNumbers(int[][] array) {
-        int counter;
-        int[] minNumbersArray = new int[countArraysNonNull(array)];
-        counter = 0;
+    private static int[] createArrayWithMinNumbers(int[][] array) {
+        int counter = 0;
+        for (int[] elementsLv2 : array) {
+            if (elementsLv2.length > 0) {
+                counter++;
+            }
+        }
+        int[] minNumbersArray = new int[counter];
 
+        counter = 0;
         for (int[] elements : array) {
             if (elements.length > 0) {
                 minNumbersArray[counter] = minIntArray(elements);
@@ -193,13 +174,12 @@ public class ArrayHw12 {
         return minNumbersArray;
     }
 
-    private static int[][] divideArray2D(int[][] array, int divider) {
-        int[][] dividedArray = array;
+    private static int[][] divideMatrix(int[][] array, int divider) {
         if (divider > 0) {
-            for (int[] elementsLv1 : dividedArray) {
-                if (elementsLv1.length > 0) {
-                    for (int i = 0; i < elementsLv1.length; i++) {
-                        elementsLv1[i] = elementsLv1[i] / divider;
+            for (int[] row : array) {
+                if (row.length > 0) {
+                    for (int i = 0; i < row.length; i++) {
+                        row[i] = row[i] / divider;
                     }
                 }
             }
@@ -207,8 +187,7 @@ public class ArrayHw12 {
             System.out.printf("Absolute minimum = %d, cannot be divided by 0\n", divider);
             System.out.print("Array has not changed:\n");
         }
-        return dividedArray;
+        return array;
     }
-
 
 }
