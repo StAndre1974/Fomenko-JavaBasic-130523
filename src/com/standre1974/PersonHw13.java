@@ -1,10 +1,17 @@
 package com.standre1974;
 
 public class PersonHw13 {
-    public String name;
-    public String surname;
-    public String city;
-    public long phoneNumber;
+    private String name;
+    private String surname;
+    private String city;
+    private long phoneNumber;
+
+    public PersonHw13(String name, String surname, String city, long phoneNumber){
+        this.name = name;
+        this.surname = surname;
+        this.city = city;
+        this.phoneNumber = phoneNumber;
+    }
 
     public String personInfo() {
         return String.format("Call citizen %s %s from %s, you can call +%d", name, surname, city, phoneNumber);
@@ -12,27 +19,15 @@ public class PersonHw13 {
 
     public static void main(String[] args) {
 
-        PersonHw13 person1 = new PersonHw13();
-        person1.name = "Will";
-        person1.surname = "Smith";
-        person1.city = "New York";
-        person1.phoneNumber = 2936729462846L;
+        PersonHw13 person1 = new PersonHw13("Will", "Smith", "New York", 2936729462846L);
         System.out.println(person1.personInfo());
 
 
-        PersonHw13 person2 = new PersonHw13();
-        person2.name = "Jackie";
-        person2.surname = "Chan";
-        person2.city = "Shanghai";
-        person2.phoneNumber = 12312412412L;
+        PersonHw13 person2 = new PersonHw13("Jackie", "Chan", "Shanghai", 12312412412L);
         System.out.println(person2.personInfo());
 
 
-        PersonHw13 person3 = new PersonHw13();
-        person3.name = "Sherlock";
-        person3.surname = "Holmes";
-        person3.city = "London";
-        person3.phoneNumber = 37742123513L;
+        PersonHw13 person3 = new PersonHw13("Sherlock", "Holmes", "London", 37742123513L);
         System.out.println(person3.personInfo());
     }
 }
