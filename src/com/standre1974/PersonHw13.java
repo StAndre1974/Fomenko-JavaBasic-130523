@@ -6,14 +6,6 @@ public class PersonHw13 {
     public String city;
     public long phoneNumber;
 
-//    public PersonHw13(String name, String surname, String city, long phoneNumber){
-//        String[] names = {this.name = name};
-//        String[] surnames = {this.surname = surname};
-//        String[] cities = {this.city = city};
-//        long[] phoneNumbers = {this.phoneNumber = phoneNumber};
-//    }
-
-
     public String personInfo(){
         return String.format("Call citizen %s %s from %s, you can call +%d", name, surname, city,phoneNumber);
 
