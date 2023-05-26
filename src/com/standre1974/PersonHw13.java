@@ -8,7 +8,6 @@ public class PersonHw13 {
 
     public String personInfo(){
         return String.format("Call citizen %s %s from %s, you can call +%d", name, surname, city,phoneNumber);
-
     }
 
     public static void main(String[] args) {
@@ -38,8 +37,5 @@ public class PersonHw13 {
         System.out.print("\n");
 
         System.out.print(person3.personInfo());
-
-
-
     }
 }
