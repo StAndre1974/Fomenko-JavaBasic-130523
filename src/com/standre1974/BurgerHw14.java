@@ -9,6 +9,22 @@ public class BurgerHw14 {
     private int countGreenery = 1;
     private int countMayonnaise = 1;
 
+    public BurgerHw14() {
+        showComposition(burgerName, countBuns, countMeat, countCheese, countGreenery, countMayonnaise);
+    }
+
+    public BurgerHw14(String burgerName) {
+        this.burgerName = burgerName;
+        this.countMayonnaise = 0;
+        showComposition(burgerName, countBuns, countMeat, countCheese, countGreenery, countMayonnaise);
+    }
+
+    public BurgerHw14(String burgerName, int countMeat) {
+        this.burgerName = burgerName;
+        this.countMeat = countMeat;
+        showComposition(burgerName, countBuns, countMeat, countCheese, countGreenery, countMayonnaise);
+    }
+
 
     public static void showComposition(String burgerName, int countBuns, int countMeat, int countCheese,
                                        int countGreenery, int countMayonnaise) {
