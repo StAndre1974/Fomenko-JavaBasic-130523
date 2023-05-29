@@ -32,6 +32,19 @@ public class BurgerHw14 {
                 burgerName, countBuns, countMeat, countCheese, countGreenery, countMayonnaise);
     }
 
+}
 
+class BurgerMain {
+
+    public static void main(String[] args) {
+        BurgerHw14 burger = new BurgerHw14();
+
+        String composition1 = "Burger without mayonnaise";
+        BurgerHw14 burger1 = new BurgerHw14(composition1);
+
+        String composition2 = "Burger double meat";
+        BurgerHw14 burger2 = new BurgerHw14(composition2, 2);
+    }
 
 }
+
