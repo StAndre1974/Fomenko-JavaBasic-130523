@@ -3,33 +3,36 @@ package com.standre1974;
 public class BurgerHw14 {
 
     private String burgerName = "Regular burger";
-    private int countBuns = 1;
-    private int countMeat = 1;
-    private int countCheese = 1;
-    private int countGreenery = 1;
-    private int countMayonnaise = 1;
+    private String[] ingredients = {"Buns", "Meat", "Cheese", "Greenery", "Mayonnaise"};
+    private int[] countIngredients = {1, 1, 1, 1, 1, 1};
 
     public BurgerHw14() {
-        showComposition(burgerName, countBuns, countMeat, countCheese, countGreenery, countMayonnaise);
+
+        showComposition();
     }
 
     public BurgerHw14(String burgerName) {
         this.burgerName = burgerName;
-        this.countMayonnaise = 0;
-        showComposition(burgerName, countBuns, countMeat, countCheese, countGreenery, countMayonnaise);
+        this.countIngredients[4] = 0;
+        showComposition();
     }
 
     public BurgerHw14(String burgerName, int countMeat) {
         this.burgerName = burgerName;
-        this.countMeat = countMeat;
-        showComposition(burgerName, countBuns, countMeat, countCheese, countGreenery, countMayonnaise);
+        countMeat = 2;
+        this.countIngredients[1] = countMeat;
+        showComposition();
     }
 
 
-    public static void showComposition(String burgerName, int countBuns, int countMeat, int countCheese,
-                                       int countGreenery, int countMayonnaise) {
-        System.out.printf("%s\nComposition:\nBun - %d\nMeat - %d\nCheese - %d\nGreenery - %d\nMayonnaise - %d\n\n",
-                burgerName, countBuns, countMeat, countCheese, countGreenery, countMayonnaise);
+    public void showComposition() {
+        System.out.print(burgerName + "\nComposition:\n");
+        for (int i = 0; i < ingredients.length; i++) {
+            if (countIngredients[i] > 0) {
+                System.out.printf("%s - %d\n", ingredients[i], countIngredients[i]);
+            }
+        }
+        System.out.print("\n");
     }
 
 }
@@ -37,14 +40,13 @@ public class BurgerHw14 {
 class BurgerMain {
 
     public static void main(String[] args) {
-        BurgerHw14 burger = new BurgerHw14();
 
-        String composition1 = "Burger without mayonnaise";
-        BurgerHw14 burger1 = new BurgerHw14(composition1);
+        BurgerHw14[] burgers = new BurgerHw14[3];
+        burgers[0] = new BurgerHw14();
+        burgers[1] = new BurgerHw14("Burger without mayonnaise");
+        burgers[2] = new BurgerHw14("Burger double meat", -1);
 
-        String composition2 = "Burger double meat";
-        BurgerHw14 burger2 = new BurgerHw14(composition2, 2);
     }
-
 }
+
 
