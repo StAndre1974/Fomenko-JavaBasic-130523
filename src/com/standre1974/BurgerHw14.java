@@ -10,4 +10,12 @@ public class BurgerHw14 {
     private int countMayonnaise = 1;
 
 
+    public static void showComposition(String burgerName, int countBuns, int countMeat, int countCheese,
+                                       int countGreenery, int countMayonnaise) {
+        System.out.printf("%s\nComposition:\nBun - %d\nMeat - %d\nCheese - %d\nGreenery - %d\nMayonnaise - %d\n\n",
+                burgerName, countBuns, countMeat, countCheese, countGreenery, countMayonnaise);
+    }
+
+
+
 }
