@@ -1,35 +1,14 @@
 package com.standre1974;
-/*
-Зробіть програму для фітнес трекера, яка реєструватиме нового користувача створюючи йому обліковий запис, приймаючи
-наступні параметри:
-Незмінні (задаються тільки при створенні облікового запису, і можуть бути отримані лише за допомогою гетерів):
-Ім'я
-Дата народження (окремо день, місяць, рік)
-Емейл
-Телефон
-Змінювані:
-Прізвище
-Вага
-Тиск
-Кількість пройдених за день кроків
-Створювати кожного користувача необхідно через конструктор, беручи всі поля на вхід конструктора.
-Додати метод printAccountInfo(), при виклику якого друкувати всі дані про користувача
-Після прийому року народження - вираховувати вік користувача у внутрішню змінну age (відштовхуючись просто
-від 2020 року, ускладнювати тут не будемо), на яку зробити тільки геттер і виводити на екран разом з іншими
-полями в методі printAccountInfo(); у конструкторі або геттерах/сеттерах не використовуємо виведення в консоль.
-У main-класі створити 3-5 користувачів та роздрукувати дані кожного через виклик методу printAccountInfo();
-для двох користувачів змінити кілька полів та роздрукувати нові дані повторно
- */
 
 public class FitnessUsersHw15 {
 
-    private String name; // is
-    private int dayBirth; // is
-    private int monthBirth; // is
-    private int yearBirth; // is
-    private int age;
-    private String email; // is
-    private String phoneNumber; // is
+    private final String name; // is
+    private final int dayBirth; // is
+    private final int monthBirth; // is
+    private final int yearBirth; // is
+    private final int age;
+    private final String email; // is
+    private final String phoneNumber; // is
     private String surname; // is
     private Float weight; // is
     private String pressure; // is
@@ -37,7 +16,7 @@ public class FitnessUsersHw15 {
 
     public FitnessUsersHw15(String name, String surname, int dayBirth, int monthBirth, int yearBirth, String email,
                             String phoneNumber, Float weight, String pressure, int steps) {
-//        "Pressure: %s\nCount of steps%d\n", name, surname, dayBirth, monthBirth, yearBirth, age, email,
+
         this.name = name;
         this.dayBirth = dayBirth;
         this.monthBirth = monthBirth;
@@ -136,43 +115,35 @@ public class FitnessUsersHw15 {
         System.out.print("\n");
     }
 
-        public static void main(String[] args) {
-
-            FitnessUsersHw15 user1 = new FitnessUsersHw15("Ivan", "Mazepa", 14, 04, 1974,
-                    "email1@i.ua", "+111222333", 75.5F, "90/130", 10000);
-            user1.printAccountInfo();
-
-            FitnessUsersHw15 user2 = new FitnessUsersHw15("Sergii", "Petrenko", 18, 11, 1978,
-                    "email2@i.ua", "+222333444", 69.2F, "80/120", 11000);
-            user2.printAccountInfo();
-
-            FitnessUsersHw15 user3 = new FitnessUsersHw15("Petro", "Durov", 18, 11, 1978,
-                    "email3@i.ua", "+333444555", 84.8F, "95/140", 14000);
-            user3.printAccountInfo();
-        }
-
-
 }
 
-//class RunTracker {
-//    public static void main(String[] args) {
-//
-//        FitnessUsersHw15 user1 = new FitnessUsersHw15("Ivan", "Mazepa", 14, 04, 1974,
-//                "email1@i.ua", "+111222333", 75.5F, "90/130", 10000);
-//        user1.printAccountInfo();
-//
-//        FitnessUsersHw15 user2 = new FitnessUsersHw15("Sergii", "Petrenko", 18, 11, 1978,
-//                "email2@i.ua", "+222333444", -69.2F, "80/120", 11000);
-//        user2.printAccountInfo();
-//
-//        FitnessUsersHw15 user3 = new FitnessUsersHw15("Petro", "Durov", 18, 11, 1978,
-//                "email3@i.ua", "+333444555", 84.8F, "95/140", 14000);
-//        user3.printAccountInfo();
-//
-//
-//
-//
-//
-//    }
-//
-//}
+class RunTracker {
+    public static void main(String[] args) {
+
+        FitnessUsersHw15 user1 = new FitnessUsersHw15("Ivan", "Mazepa", 14, 04, 1974,
+                "email1@i.ua", "+111222333", 75.5F, "90/130", 10000);
+        user1.printAccountInfo();
+
+        FitnessUsersHw15 user2 = new FitnessUsersHw15("Sergii", "Petrenko", 18, 11, 1978,
+                "email2@i.ua", "+222333444", 69.2F, "80/120", 11000);
+        user2.printAccountInfo();
+
+        FitnessUsersHw15 user3 = new FitnessUsersHw15("Petro", "Durov", 18, 11, 1978,
+                "email3@i.ua", "+333444555", 84.8F, "95/140", 14000);
+        user3.printAccountInfo();
+
+        user1.setSteps(9999);
+        user1.setWeight(74.2F);
+        user1.setPressure("93/128");
+        System.out.print("User1 after chamges:\n");
+        user1.printAccountInfo();
+
+        user2.setSteps(11500);
+        user2.setWeight(71.4F);
+        user2.setPressure("88/131");
+        System.out.print("User2 after chamges:\n");
+        user2.printAccountInfo();
+
+    }
+
+}
