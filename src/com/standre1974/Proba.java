@@ -7,13 +7,12 @@ public class Proba {
 
 
     public static void main(String[] args) {
-
-        Burger[]array = new Burger[3];
-        array[0] = new Burger();
-        array[1] = new Burger();
-        array[2] = new Burger();
-        for (int i = 0; i < array.length; i++){
-            System.out.print(array[i]);
+        String specifiers = "%-30s %-20s %-5.2f%n";
+        System.out.format(specifiers, "Head First Java", "Kathy Sierra", 23.99f);
+        System.out.format(specifiers, "Thinking in Java", "Bruce Eckel", 25.69f);
+        System.out.format(specifiers, "Effective Java", "Joshua Bloch", 27.88f);
+        System.out.format(specifiers, "The Passionate Programmer", "Chad Fowler", 41.99f);
+        System.out.format(specifiers, "Code Complete", "Steve McConnell", 38.42f);
         }
 
 
@@ -21,25 +20,6 @@ public class Proba {
     }
 
 
-}
 
-class Burger {
 
-    private String burgerName = "Regular burger";
-    private int countBuns = 1;
-    private int countMeat = 1;
-    private int countCheese = 1;
-    private int countGreenery = 1;
-    private int countMayonnaise = 1;
-
-    public Burger() {
-        showComposition(burgerName, countBuns, countMeat, countCheese, countGreenery, countMayonnaise);
-    }
-
-    public static void showComposition(String burgerName, int countBuns, int countMeat, int countCheese,
-                                       int countGreenery, int countMayonnaise) {
-        System.out.printf("%s\nComposition:\nBun - %d\nMeat - %d\nCheese - %d\nGreenery - %d\nMayonnaise - %d\n\n",
-                burgerName, countBuns, countMeat, countCheese, countGreenery, countMayonnaise);
-    }
-}
 

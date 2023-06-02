@@ -19,7 +19,10 @@ public class BurgerHw14 {
 
     public BurgerHw14(String burgerName, int countMeat) {
         this.burgerName = burgerName;
-        countMeat = 2;
+        if ((countMeat < 2) || (countMeat > 10)){
+            countMeat = 2;
+        }
+
         this.countIngredients[1] = countMeat;
         showComposition();
     }
@@ -44,7 +47,7 @@ class BurgerMain {
         BurgerHw14[] burgers = new BurgerHw14[3];
         burgers[0] = new BurgerHw14();
         burgers[1] = new BurgerHw14("Burger without mayonnaise");
-        burgers[2] = new BurgerHw14("Burger double meat", -1);
+        burgers[2] = new BurgerHw14("Burger double meat", 14);
 
     }
 }
