@@ -13,6 +13,39 @@ public interface SmartphonesHw16 {
     void internet();
 }
 
-public interface LinuxOS{
+class Androids implements SmartphonesHw16{
 
+    @Override
+    public void call() {
+
+    }
+
+    @Override
+    public void sms() {
+
+    }
+
+    @Override
+    public void internet() {
+
+    }
+}
+
+
+class IPhones implements SmartphonesHw16{
+
+    @Override
+    public void call() {
+
+    }
+
+    @Override
+    public void sms() {
+
+    }
+
+    @Override
+    public void internet() {
+
+    }
 }
