@@ -14,101 +14,109 @@ public class CreateSmartphoneHw16 {
         phones[1] = iPhone1;
         phones[2] = iPhone2;
 
-        LinuxOS[] phoneLinux = new LinuxOS[countPhones];
-        phoneLinux[0] = samsung1;
-
-        IOS[] phoneIOS = new IOS[countPhones];
-        phoneIOS[0] = iPhone1;
-        phoneIOS[1] = iPhone2;
-
-
         for (Smartphones phone : phones) {
-            phone.call();
-            phone.sms();
-            phone.sms();
             if (phone instanceof Androids) {
+                phone.phoneName();
                 ((Androids) phone).operationSystem();
             } else {
+                phone.phoneName();
                 ((IPhones) phone).operationSystem();
             }
+            phone.call();
+            phone.sms();
+            phone.internet();
             System.out.print("\n");
         }
 
     }
+
 }
 
-    interface Smartphones {
-        void call();
+interface Smartphones {
+    void phoneName();
 
-        void sms();
+    void call();
 
-        void internet();
+    void sms();
+
+    void internet();
+}
+
+interface LinuxOS {
+    void operationSystem();
+}
+
+interface IOS {
+    void operationSystem();
+}
+
+class Androids implements Smartphones, LinuxOS {
+    private final static String PHONE_TYPE = "Phone Android";
+    private final String phoneName;
+
+    public Androids(String phoneName) {
+        this.phoneName = phoneName;
     }
 
-    interface LinuxOS {
-        void operationSystem();
+    @Override
+    public void phoneName() {
+        System.out.println(PHONE_TYPE + " model " + phoneName);
     }
 
-    interface IOS {
-        void operationSystem();
+    @Override
+    public void call() {
+        System.out.print("- can call\n");
     }
 
-    class Androids implements Smartphones, LinuxOS {
-        private final static String PHONE_TYPE = "Phone Android";
-        private final String phoneName;
-
-        public Androids(String phoneName) {
-            this.phoneName = phoneName;
-        }
-
-        @Override
-        public void call() {
-            System.out.println(PHONE_TYPE + " " + phoneName + " can call");
-        }
-
-        @Override
-        public void sms() {
-            System.out.println(PHONE_TYPE + " " + phoneName + " can receive and send SMS");
-        }
-
-        @Override
-        public void internet() {
-            System.out.println(PHONE_TYPE + " " + phoneName + " has mobile internet");
-        }
-
-        @Override
-        public void operationSystem() {
-            System.out.println(PHONE_TYPE + " " + phoneName + " has operation system Android");
-        }
+    @Override
+    public void sms() {
+        System.out.print("- can receive and send SMS\n");
     }
 
-
-    class IPhones implements Smartphones, IOS {
-        private final static String PHONE_TYPE = "Phone iOs";
-        private String phoneName;
-
-        public IPhones(String phoneName) {
-            this.phoneName = phoneName;
-        }
-
-        @Override
-        public void call() {
-            System.out.println(PHONE_TYPE + " " + phoneName + " can call");
-        }
-
-        @Override
-        public void sms() {
-            System.out.println(PHONE_TYPE + " " + phoneName + " can receive and send SMS");
-        }
-
-        @Override
-        public void internet() {
-            System.out.println(PHONE_TYPE + " " + phoneName + " has mobile internet");
-        }
-
-        @Override
-        public void operationSystem() {
-            System.out.println(PHONE_TYPE + " " + phoneName + " has operation system iOs");
-        }
+    @Override
+    public void internet() {
+        System.out.print("- has mobile internet\n");
     }
+
+    @Override
+    public void operationSystem() {
+        System.out.print("- has operation system LinuxOS\n");
+    }
+}
+
+
+class IPhones implements Smartphones, IOS {
+    private final static String PHONE_TYPE = "Phone iOs";
+    private final String phoneName;
+
+    public IPhones(String phoneName) {
+        this.phoneName = phoneName;
+    }
+
+    @Override
+    public void phoneName() {
+        System.out.println(PHONE_TYPE + " model " + phoneName);
+    }
+
+    @Override
+    public void call() {
+        System.out.print("- an call\n");
+    }
+
+    @Override
+    public void sms() {
+        System.out.print("- can receive and send SMS\n");
+    }
+
+    @Override
+    public void internet() {
+        System.out.print("- has mobile internet\n");
+    }
+
+    @Override
+    public void operationSystem() {
+        System.out.print("- has operation system iOs\n");
+    }
+
+}
 
